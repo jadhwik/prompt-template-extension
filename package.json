@@ -1,0 +1,73 @@
+{
+  "name": "prompt-templates",
+  "displayName": "Prompt Templates",
+  "description": "Manage and load prompt templates into Cursor chat",
+  "version": "3.0.0",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "promptTemplates",
+          "title": "Prompt Templates",
+          "icon": "$(note)"
+        }
+      ]
+    },
+    "views": {
+      "promptTemplates": [
+        {
+          "id": "promptTemplatesList",
+          "name": "Templates"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "prompt-templates.addTemplate",
+        "title": "Add Template",
+        "icon": "$(add)"
+      },
+      {
+        "command": "prompt-templates.loadToChat",
+        "title": "Load to Chat"
+      },
+      {
+        "command": "prompt-templates.editTemplate",
+        "title": "Edit Template",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "prompt-templates.deleteTemplate",
+        "title": "Delete Template",
+        "icon": "$(trash)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "prompt-templates.addTemplate",
+          "when": "view == promptTemplatesList",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "prompt-templates.editTemplate",
+          "when": "view == promptTemplatesList && viewItem == template",
+          "group": "inline@1"
+        },
+        {
+          "command": "prompt-templates.deleteTemplate",
+          "when": "view == promptTemplatesList && viewItem == template",
+          "group": "inline@2"
+        }
+      ]
+    }
+  }
+}
